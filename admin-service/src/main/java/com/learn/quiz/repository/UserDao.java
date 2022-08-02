@@ -16,7 +16,7 @@ public class UserDao {
 	JdbcTemplate jdbcTemplate;
 
 	public User findById(Long id) {
-		List<User> rs = jdbcTemplate.query("SELECT u.* from User u where u.id = ?",
+		List<User> rs = jdbcTemplate.query("SELECT u.* from user u where u.id = ?",
 				new BeanPropertyRowMapper<User>(User.class), new Object[] { id });
 		if (rs != null && rs.size() > 0) {
 			return rs.get(0);

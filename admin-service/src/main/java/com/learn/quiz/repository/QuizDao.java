@@ -16,12 +16,12 @@ public class QuizDao {
 	JdbcTemplate jdbcTemplate;
 
 	public List<Quiz> findAllByDeleted(Character deleted) {
-		return jdbcTemplate.query("SELECT q.* from Quiz q where q.deleted = 'N'",
+		return jdbcTemplate.query("SELECT q.* from quiz q where q.deleted = 'N'",
 				new BeanPropertyRowMapper<Quiz>(Quiz.class));
 	}
 
 	public Quiz findById(Long quizId) {
-		List<Quiz> rs = jdbcTemplate.query("SELECT q.* from Quiz q where q.deleted = 'N' and q.id = ?",
+		List<Quiz> rs = jdbcTemplate.query("SELECT q.* from quiz q where q.deleted = 'N' and q.id = ?",
 				new BeanPropertyRowMapper<Quiz>(Quiz.class), new Object[] { quizId });
 		if (rs != null && rs.size() > 0) {
 			return rs.get(0);

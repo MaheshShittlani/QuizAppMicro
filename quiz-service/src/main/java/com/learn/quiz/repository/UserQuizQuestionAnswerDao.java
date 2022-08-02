@@ -46,7 +46,7 @@ public class UserQuizQuestionAnswerDao {
 	}
 
 	public List<UserQuizQuestionAnswer> findAll() {
-		return jdbcTemplate.query("SELECT q.* FROM quiz.user_quiz_ques_ans q",
+		return jdbcTemplate.query("SELECT q.* FROM quiz.cd  q",
 				new BeanPropertyRowMapper<UserQuizQuestionAnswer>(UserQuizQuestionAnswer.class));
 	}
 
