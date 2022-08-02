@@ -47,5 +47,10 @@ public class QuestionDao {
 						question.getOptionC(), question.getOptionD(), question.getRightOption().toString(),
 						question.getId() });
 	}
+	
+	public int delete(Long questionId) {
+		return jdbcTemplate.update("UPDATE quiz.question SET deleted = 'Y', updated_on = now() WHERE id = ? ",
+				new Object[] { questionId });
+	}
 
 }

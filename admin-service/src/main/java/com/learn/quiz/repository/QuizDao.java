@@ -41,7 +41,7 @@ public class QuizDao {
 	private int merge(Quiz quiz) {
 		return jdbcTemplate.update(
 				"UPDATE `quiz`.`quiz` SET `title` = 	?, `category` =?, `deleted` = ?, `updated_on` = now() WHERE `id` = ?",
-				new Object[] { quiz.getTitle(), quiz.getCategory(), quiz.getDeleted(), quiz.getId() });
+				new Object[] { quiz.getTitle(), quiz.getCategory(), quiz.getDeleted().toString(), quiz.getId() });
 	}
 
 	private int persist(Quiz quiz) {

@@ -43,9 +43,8 @@ public class QuestionService {
 	}
 
 	public ResponseEntity<Response> deleteQuestion(Long questionId, String authorization) {
-		Question question = findById(questionId, authorization);
-		question.setDeleted('Y');
-		if (questionDao.update(question) > 0) {
+		
+		if (questionDao.delete(questionId) > 0) {
 			return new ResponseEntity<Response>(new Response("Question deleted successfully."), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Response>(new Response("Question not able to delete."),
