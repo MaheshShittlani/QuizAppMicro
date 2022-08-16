@@ -1,22 +1,18 @@
 package com.learn.quiz.service;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.learn.quiz.dto.QuestionDto;
 import com.learn.quiz.dto.QuestionRequestDto;
 import com.learn.quiz.dto.Response;
 import com.learn.quiz.dto.UpdateQuestionRequestDto;
 import com.learn.quiz.entity.Question;
 import com.learn.quiz.exceptionHandler.CustomException;
 import com.learn.quiz.repository.QuestionDao;
-import com.learn.quiz.utility.ExcelReader;
 
 @Service
 public class QuestionService {
@@ -83,26 +79,6 @@ public class QuestionService {
 			return new ResponseEntity<Response>(new Response("Question not able to create."),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}
-
-	public ResponseEntity<Response> importQuestions(MultipartFile file, String authorization) throws IOException {
-		List<QuestionDto> questionDtos = ExcelReader.getQuestion(file.getInputStream());
-
-		for (QuestionDto questionRequestDto : questionDtos) {
-			Question question = new Question();
-			question.setQuestion(questionRequestDto.getQuestion());
-			question.setOptionA(questionRequestDto.getOptionA());
-			question.setOptionB(questionRequestDto.getOptionB());
-			question.setOptionC(questionRequestDto.getOptionC());
-			question.setOptionD(questionRequestDto.getOptionD());
-			question.setRightOption(questionRequestDto.getRightOption());
-			if (questionDao.save(question) > 0) {
-				return new ResponseEntity<Response>(new Response("Question not able to upload."),
-						HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		}
-		return new ResponseEntity<Response>(new Response("Question uploaded successfully."), HttpStatus.OK);
-
 	}
 
 }

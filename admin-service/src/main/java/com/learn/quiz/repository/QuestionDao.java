@@ -34,9 +34,9 @@ public class QuestionDao {
 		return jdbcTemplate.update(
 				"INSERT INTO quiz.question "
 						+ "( question, option_a, option_b, option_c, option_d, right_option, deleted)"
-						+ " VALUES ( ?, ?, ?, ?, ?, ?, ? );",
+						+ " VALUES ( ?, ?, ?, ?, ?, ?, 'N' );",
 				new Object[] { question.getQuestion(), question.getOptionA(), question.getOptionB(),
-						question.getClass(), question.getOptionD(), question.getRightOption(), question.getDeleted() });
+						question.getOptionC(), question.getOptionD(), question.getRightOption().toString() });
 	}
 
 	public int update(Question question) {

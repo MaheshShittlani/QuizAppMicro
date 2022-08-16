@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.learn.quiz.dto.Response;
 import com.learn.quiz.dto.SubmitQuestion;
+import com.learn.quiz.dto.UserScore;
 import com.learn.quiz.entity.QuizQuestion;
 import com.learn.quiz.entity.User;
 import com.learn.quiz.entity.UserQuizQuestionAnswer;
@@ -56,6 +57,10 @@ public class UserQuizQuestionAnswerService {
 			return new ResponseEntity<Response>(new Response("Answer not able to submit."),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	public List<UserScore> getLeaderBoard(Long quizId) {
+		return userQuizQuestionAnswerDao.getLeaderBoard(quizId);
 	}
 
 }
